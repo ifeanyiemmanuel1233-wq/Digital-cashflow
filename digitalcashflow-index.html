@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Cashflow Blueprint</title>
+
+  <!-- ====== FACEBOOK PIXEL — paste your Pixel ID below ====== -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID_HERE'); // <-- Replace with your Pixel ID
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- ====== END FACEBOOK PIXEL ====== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --white: #f5f2ec;
+      --green: #1a9e5c;
+      --green-dark: #137a45;
+      --green-light: #d6f5e6;
+      --muted: #6b6b6b;
+      --card-bg: #ffffff;
+      --border: #e5e0d8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px 16px 48px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      max-width: 560px;
+      width: 100%;
+      padding: 40px 36px 36px;
+      box-shadow: 0 2px 40px rgba(0,0,0,0.07);
+      animation: fadeUp 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+    }
+
+    .badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 34px);
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 18px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .subtext {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 26px;
+      line-height: 1.65;
+    }
+
+    .subtext strong {
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      margin-bottom: 32px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 14.5px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .checklist li .icon {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .checklist li .icon svg {
+      width: 11px; height: 11px;
+      stroke: var(--green-dark);
+      stroke-width: 3;
+      fill: none;
+    }
+
+    /* ---- divider ---- */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    /* ---- not for you block ---- */
+    .filter-block {
+      background: #faf7f2;
+      border: 1px solid #ede8de;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 30px;
+    }
+
+    .filter-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #b04b1a;
+      margin-bottom: 14px;
+    }
+
+    .filter-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .filter-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .filter-list li .x {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      background: #fde8df;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      font-size: 10px;
+      color: #b04b1a;
+      font-weight: 700;
+    }
+
+    /* ---- CTA ---- */
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 17px 24px;
+      background: var(--green);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .cta-btn:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .cta-btn svg {
+      width: 20px; height: 20px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+
+    .cta-sub {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* ---- footer ---- */
+    .footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: #aaa;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 400px) {
+      .card { padding: 28px 20px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="badge">Free video — limited spots</div>
+
+  <h1>Earn Real Income Online —<br><em>Without a Product,</em><br>Office, or 9–5.<br>Just Your Smartphone.</h1>
+
+  <p class="subtext">
+    I'll send you a short video that shows you <strong>exactly how Nigerians are making consistent income</strong> promoting digital products online — no inventory, no capital, no tech background needed.
+  </p>
+
+  <ul class="checklist">
+    <li>
+      <span class="icon">
+        <svg viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg>
+      </span>
+      <span>A proven model — get paid promoting other people's digital products</span>
+    </li>
+    <li>
+      <span class="icon">
+        <svg viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg>
+      </span>
+      <span>Works 100% online — run it from your phone, anywhere in Nigeria</span>
+    </li>
+    <li>
+      <span class="icon">
+        <svg viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg>
+      </span>
+      <span>No experience required — complete beginners are already earning</span>
+    </li>
+    <li>
+      <span class="icon">
+        <svg viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg>
+      </span>
+      <span>The video is free — sent straight to your WhatsApp</span>
+    </li>
+  </ul>
+
+  <hr class="divider">
+
+  <div class="filter-block">
+    <h3>⚠️ This is NOT for you if…</h3>
+    <ul class="filter-list">
+      <li><span class="x">✕</span><span>You're not willing to watch a short free video before deciding</span></li>
+      <li><span class="x">✕</span><span>You want "get rich without doing anything" — this takes real effort</span></li>
+      <li><span class="x">✕</span><span>You're not open to investing in yourself when the time comes</span></li>
+      <li><span class="x">✕</span><span>You'll watch the video, do nothing, and complain later</span></li>
+    </ul>
+  </div>
+
+  <a href="https://wa.link/7npznb" class="cta-btn" onclick="fbq && fbq('track', 'Lead')">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.551 4.106 1.516 5.832L.057 23.743a.5.5 0 0 0 .625.607l5.919-1.55A11.956 11.956 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.82 9.82 0 0 1-5.018-1.379l-.36-.214-3.733.979 1-3.62-.234-.373A9.774 9.774 0 0 1 2.182 12C2.182 6.573 6.573 2.182 12 2.182S21.818 6.573 21.818 12 17.427 21.818 12 21.818z"/>
+    </svg>
+    Send Me the Free Video on WhatsApp
+  </a>
+
+  <p class="cta-sub">🔒 No spam. Just the video — straight to your WhatsApp.</p>
+
+  <div class="footer">
+    This site is not part of Facebook / Meta Inc. and is not endorsed by Facebook in any way.<br>
+    FACEBOOK is a trademark of META Inc. This site is not affiliated with TikTok or ByteDance Ltd.
+  </div>
+
+</div>
+
+</body>
+</html>
